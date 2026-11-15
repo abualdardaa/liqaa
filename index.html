@@ -1,1029 +1,182 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
-  <title>تسجيل حضور أولياء الأمور | مدرسة محمد بن سليمان الغافري</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #1e3c72;
-      --secondary: #2a5298;
-      --accent: #ffd700;
-      --light: rgba(255, 255, 255, 0.1);
-      --dark: #ffffff;
-      --success: #4CAF50;
-      --error: #ff6b6b;
-    }
+        content="width=device-width, initial-scale=1.0">
 
+  <title>ملتقى أولياء الأمور | مدرسة أبو الدرداء للبنين (5-12)</title>
+
+  <meta name="theme-color" content="#102b4e">
+
+  <style>
     * {
       box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-      margin: 0;
-      padding: 0;
-      font-family: 'El Messiri', 'Tajawal', sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: var(--dark);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      font-size: 18px; /* حجم خط أساسي مناسب للهواتف */
+      margin: 0;
+      font-family: Tahoma, Arial, sans-serif;
+      background: #f3f6fa;
+      color: #173454;
     }
 
-    /* الهيدر المعدل */
     .header {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 15px 20px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(135deg, #102b4e, #245780);
       color: white;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      position: relative;
-      height: auto;
-      min-height: 100px;
-      flex-shrink: 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
       text-align: center;
+      padding: 22px 15px;
+      border-bottom: 4px solid #d5ad52;
     }
-    
-    .logo-container {
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      gap: 8px;
-    }
-    
+
     .logo {
-      height: 60px;
-      width: auto;
+      width: 85px;
+      height: 85px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 5px rgba(255, 255, 255, 0.7));
-      border-radius: 50%;
+      margin-bottom: 12px;
     }
-    
-    .school-name {
-      font-size: 1.1rem;
-      color: #ffd700;
+
+    .school {
+      font-size: 21px;
       font-weight: bold;
+      margin-bottom: 10px;
     }
 
-    .meeting-title {
-      font-size: 1.3rem;
-      color: var(--accent);
-      font-weight: 700;
-      margin: 5px 0;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-      line-height: 1.4;
-    }
-
-    .app {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      padding: 15px 10px 100px;
-    }
-
-    .container {
-      flex: 1;
-      width: 100%;
-      max-width: 980px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      padding: 20px 15px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .container::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 6px;
-      background: linear-gradient(90deg, var(--accent), #ffed4e);
-    }
-
-    .card-content {
-      position: relative;
-      z-index: 1;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      margin-bottom: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      font-size: 1.8rem; /* حجم أكبر للهواتف */
-      margin: 10px 0 8px;
-      color: var(--accent);
-      font-weight: 700;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      line-height: 1.3;
+    .meeting {
+      font-size: 17px;
+      color: #f4d68b;
     }
 
     .subtitle {
-      font-size: 1.1rem; /* حجم مناسب للهواتف */
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 15px;
-      line-height: 1.5;
+      margin-top: 9px;
+      font-size: 13px;
+      color: #e1e9f2;
     }
 
-    .badge-row {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
+    .main {
+      max-width: 1100px;
+      margin: 18px auto;
+      padding: 0 12px;
     }
 
-    .badge {
-      padding: 8px 16px;
-      border-radius: 20px;
-      background: rgba(255, 215, 0, 0.2);
-      color: var(--accent);
-      font-size: 0.9rem;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-      border: 1px solid rgba(255, 215, 0, 0.3);
-    }
-
-    .badge-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
-
-    /* شريط الإحصاءات */
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .stat-card {
+    .frame-container {
+      background: white;
       border-radius: 16px;
-      padding: 12px 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      text-align: center;
-      position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      backdrop-filter: blur(5px);
+      box-shadow: 0 6px 24px rgba(0,0,0,.10);
+      border: 1px solid #e0e6ed;
     }
 
-    .stat-label {
-      font-size: 0.85rem;
-      color: var(--accent);
-      margin-bottom: 5px;
-      font-weight: 600;
-    }
-
-    .stat-value {
-      font-size: 1.4rem;
-      font-weight: 900;
-      color: var(--dark);
-      line-height: 1.2;
-    }
-
-    .stat-sub {
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-top: 4px;
-    }
-
-    .stat-card.highlight {
-      background: rgba(255, 215, 0, 0.15);
-      border-color: rgba(255, 215, 0, 0.3);
-    }
-
-    .stat-card.success {
-      background: rgba(76, 175, 80, 0.15);
-      border-color: rgba(76, 175, 80, 0.3);
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .field {
-      margin-bottom: 15px;
-    }
-
-    label {
+    iframe {
       display: block;
-      font-size: 1.1rem;
-      margin-bottom: 8px;
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    input[type="text"],
-    input[type="tel"] {
       width: 100%;
-      padding: 16px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      font-size: 1.1rem;
-      box-sizing: border-box;
-      background: rgba(255, 255, 255, 0.1);
-      color: var(--dark);
-      transition: all 0.3s;
-      backdrop-filter: blur(5px);
+      height: 1100px;
+      border: 0;
+      background: white;
     }
 
-    input::placeholder {
-      font-size: 1rem;
-      color: rgba(255, 255, 255, 0.7);
-    }
-
-    input:focus {
-      outline: none;
-      border-color: var(--accent);
-      background: rgba(255, 255, 255, 0.15);
-      box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.3);
-      transform: translateY(-2px);
-    }
-
-    .hint {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-top: 6px;
-      line-height: 1.5;
-    }
-
-    .parent-wrapper {
-      position: relative;
-    }
-
-    .suggestions {
-      position: absolute;
-      inset-inline: 0;
-      top: 100%;
-      margin-top: 5px;
-      background: rgba(255, 255, 255, 0.95);
-      border-radius: 14px;
-      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
-      max-height: 200px;
-      overflow-y: auto;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      z-index: 10;
-    }
-
-    .suggestion-item {
-      padding: 12px 14px;
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      transition: background-color 0.15s ease;
-      color: #1e3c72;
-      border-bottom: 1px solid rgba(30, 60, 114, 0.1);
-    }
-
-    .suggestion-item:last-child {
-      border-bottom: none;
-    }
-
-    .suggestion-item:hover {
-      background: rgba(255, 215, 0, 0.2);
-    }
-
-    .suggestion-highlight {
-      color: var(--primary);
-      font-weight: 900;
-    }
-
-    .suggestion-tag {
-      font-size: 0.8rem;
-      color: #1e3c72;
-      background: rgba(30, 60, 114, 0.1);
-      padding: 4px 10px;
-      border-radius: 12px;
-      margin-inline-start: 8px;
-    }
-
-    .children-wrapper {
-      display: flex;
-      flex-direction: column;
-      flex: 1;
-      min-height: 180px;
-    }
-
-    .children-list {
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 16px;
-      padding: 15px;
-      flex: 1;
-      max-height: 40vh;
-      overflow-y: auto;
-      background: rgba(255, 255, 255, 0.1);
-      font-size: 1rem;
-      backdrop-filter: blur(5px);
-    }
-
-    .child-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      padding: 12px;
-      border-radius: 14px;
-      transition: all 0.3s ease;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid transparent;
-    }
-
-    .child-item:last-child {
-      margin-bottom: 0;
-    }
-
-    .child-item input[type="checkbox"] {
-      margin-left: 12px;
-      width: 22px;
-      height: 22px;
-      accent-color: var(--accent);
-    }
-
-    .child-label-main {
-      font-weight: 700;
-      color: var(--dark);
-      font-size: 1rem;
-    }
-
-    .child-label-class {
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
-      margin-inline-start: 6px;
-    }
-
-    .child-item.active {
-      background: rgba(255, 215, 0, 0.2);
-      border-color: rgba(255, 215, 0, 0.4);
-      transform: translateY(-2px);
-    }
-
-    footer {
-      margin-top: 20px;
+    .actions {
+      text-align: center;
+      padding: 18px;
     }
 
     .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 24px;
-      border-radius: 25px;
-      border: none;
-      cursor: pointer;
-      font-size: 1.2rem;
-      font-weight: 700;
-      transition: all 0.3s ease;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent), #ffed4e);
-      color: #1e3c72;
-      width: 100%;
-      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
-    }
-
-    .btn-primary:active {
-      transform: translateY(2px);
-      box-shadow: 0 4px 12px rgba(255, 215, 0, 0.3);
-    }
-
-    .btn-primary:disabled {
-      background: rgba(255, 255, 255, 0.3);
-      color: rgba(30, 60, 114, 0.5);
-      box-shadow: none;
-      cursor: not-allowed;
-      transform: none;
-    }
-
-    .btn-icon {
-      margin-inline-start: 8px;
-      font-size: 1.1rem;
-    }
-
-    .status {
-      margin-top: 12px;
-      font-size: 1rem;
-      min-height: 20px;
-      text-align: center;
-      padding: 12px;
+      display: inline-block;
+      background: #173f69;
+      color: white;
+      text-decoration: none;
+      padding: 13px 25px;
       border-radius: 10px;
-      font-weight: 600;
+      font-weight: bold;
     }
 
-    .status.success {
-      background: rgba(76, 175, 80, 0.2);
-      color: var(--accent);
-    }
-    .status.error {
-      background: rgba(255, 107, 107, 0.2);
-      color: #ff6b6b;
-    }
-    .status.info {
-      background: rgba(74, 144, 226, 0.2);
-      color: var(--accent);
+    .btn:hover {
+      background: #28618f;
     }
 
-    /* الشريط السفلي الثابت */
-    .bottom-bar {
-      position: fixed;
-      inset-inline: 0;
-      bottom: 0;
-      background: rgba(0, 0, 0, 0.25);
-      color: var(--dark);
-      padding: 12px 15px;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      font-size: 0.9rem;
-      backdrop-filter: blur(15px);
-      box-shadow: 0 -5px 20px rgba(0,0,0,0.4);
-      z-index: 50;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: #66788a;
     }
 
-    .bottom-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      white-space: nowrap;
-    }
+    @media (max-width: 600px) {
+      .school {
+        font-size: 17px;
+      }
 
-    .bottom-label {
-      color: rgba(255, 255, 255, 0.9);
-      font-size: 0.85rem;
-    }
+      .meeting {
+        font-size: 15px;
+      }
 
-    .bottom-value {
-      font-size: 1.1rem;
-      font-weight: 900;
-      color: var(--accent);
-    }
+      .logo {
+        width: 70px;
+        height: 70px;
+      }
 
-    /* تحسينات للهواتف الصغيرة */
-    @media (max-width: 480px) {
-      body {
-        font-size: 16px;
+      iframe {
+        height: 1250px;
       }
-      
-      .header {
-        padding: 12px 15px;
-        min-height: 90px;
-      }
-      
-      .meeting-title {
-        font-size: 1.1rem;
-      }
-      
-      h1 {
-        font-size: 1.5rem;
-      }
-      
-      .subtitle {
-        font-size: 1rem;
-      }
-      
-      .app {
-        padding: 10px 8px 90px;
-      }
-      
-      .container {
-        padding: 15px 12px;
-        border-radius: 18px;
-      }
-      
-      .stats-row {
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-      
-      .stat-card {
-        padding: 10px;
-      }
-      
-      .stat-value {
-        font-size: 1.3rem;
-      }
-      
-      input[type="text"],
-      input[type="tel"] {
-        padding: 14px 12px;
-        font-size: 1rem;
-      }
-      
-      .btn {
-        padding: 16px 20px;
-        font-size: 1.1rem;
-      }
-      
-      .bottom-bar {
-        padding: 10px 12px;
-        font-size: 0.8rem;
-      }
-      
-      .bottom-value {
-        font-size: 1rem;
-      }
-    }
 
-    @media (max-width: 360px) {
-      .badge-row {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .badge {
-        width: 100%;
-        justify-content: center;
-      }
-      
-      .meeting-title {
-        font-size: 1rem;
-      }
-      
-      h1 {
-        font-size: 1.3rem;
-      }
-    }
-
-    /* تحسينات للأجهزة الكبيرة */
-    @media (min-width: 768px) {
-      .app {
-        padding: 20px 15px 110px;
-      }
-      
-      .container {
-        padding: 25px 20px;
-      }
-      
-      h1 {
-        font-size: 2rem;
-      }
-      
-      .meeting-title {
-        font-size: 1.4rem;
+      .main {
+        margin: 10px auto;
+        padding: 0 6px;
       }
     }
   </style>
 </head>
+
 <body>
-  <!-- الهيدر المعدل -->
+
   <header class="header">
-    <div class="logo-container">
-      <img src="https://j.top4top.io/p_3327lje811.jpg" alt="شعار المدرسة" class="logo">
-      <div class="school-name"> مدرسة محمد بن سليمان الغافري</div>
-      <div class="meeting-title">اللقاء التربوي بين الهيئة التعليمية وأولياء الأمور</div>
+    <img
+      class="logo"
+      src="https://e.top4top.io/p_3957upn9k1.png"
+      alt="شعار مدرسة أبو الدرداء">
+
+    <div class="school">
+      مدرسة أبو الدرداء للبنين (5-12)
+    </div>
+
+    <div class="meeting">
+      الملتقى التربوي الأول لأولياء الأمور والهيئة التعليمية
+    </div>
+
+    <div class="subtitle">
+      منظومة تسجيل الحضور ومتابعة التحصيل الدراسي
     </div>
   </header>
 
-  <div class="app">
-    <div class="container">
-      <div class="card-content">
-        <header>
-          <h1>تسجيل حضور أولياء الأمور</h1>
-          <div class="subtitle">
-            سجّل حضور ولي الأمر وحدد الأبناء الذين تمت مناقشة تحصيلهم في هذا اللقاء التربوي.
-          </div>
+  <main class="main">
 
-          <div class="badge-row">
-            <span class="badge">
-              <span class="badge-dot"></span>
-              ملتقى أولياء الأمور
-            </span>
-            <span class="badge">
-              <span class="badge-dot"></span>
-              رصد ذكي للحضور
-            </span>
-          </div>
-
-          <!-- شريط الإحصاءات العلوي -->
-          <div class="stats-row">
-            <div class="stat-card">
-              <div class="stat-label">أولياء الأمور الحاضرون</div>
-              <div class="stat-value" id="statsParents">0</div>
-              <div class="stat-sub">عدد الأفراد المسجلين فعليًا</div>
-            </div>
-            <div class="stat-card highlight">
-              <div class="stat-label">الطلبة الذين تمت مناقشتهم</div>
-              <div class="stat-value" id="statsStudents">0</div>
-              <div class="stat-sub">من تم السؤال عنهم خلال اللقاء</div>
-            </div>
-            <div class="stat-card success">
-              <div class="stat-label">نسبة حضور أولياء الأمور</div>
-              <div class="stat-value" id="statsPercent">0%</div>
-              <div class="stat-sub">من إجمالي الطلبة المقيدين بالمدرسة</div>
-            </div>
-          </div>
-        </header>
-
-        <main>
-          <!-- حقل ولي الأمر مع بحث -->
-          <div class="field">
-            <label for="parentInput">ولي الأمر</label>
-            <div class="parent-wrapper">
-              <input type="text"
-                     id="parentInput"
-                     placeholder="اكتب أول الاسم (مثال: سالم، محمد، سعيد)..."
-                     autocomplete="off">
-              <div id="parentSuggestions" class="suggestions" style="display:none;"></div>
-            </div>
-            <div class="hint">
-              الأسماء تُجلب من ورقة <strong>"قاعدة البيانات"</strong> (عمود ولي الأمر).  
-              اكتب بداية الاسم وستظهر الأسماء المشابهة لاختيارها.
-            </div>
-          </div>
-
-          <!-- رقم الهاتف -->
-          <div class="field">
-            <label for="phoneInput">رقم الهاتف</label>
-            <input type="tel"
-                   id="phoneInput"
-                   placeholder="رقم الهاتف أو رمز مناسب (يمكن كتابة - عند الحاجة)">
-            <div class="hint">
-              الهدف توثيق وسيلة تواصل أساسية لولي الأمر الحاضر.
-            </div>
-          </div>
-
-          <!-- الأبناء -->
-          <div class="field children-wrapper">
-            <label>أبناء هذا الولي (اختر من تمّت مناقشة تحصيله)</label>
-            <div id="childrenContainer" class="children-list">
-              <span class="hint">اختر ولي أمر أولاً لعرض أبنائه.</span>
-            </div>
-          </div>
-        </main>
-
-        <footer>
-          <button id="saveBtn" class="btn btn-primary" onclick="saveData()">
-            <span>حفظ الحضور</span>
-            <span class="btn-icon">✔️</span>
-          </button>
-
-          <div id="status" class="status"></div>
-        </footer>
-      </div>
+    <div class="frame-container">
+      <iframe
+        id="attendanceFrame"
+        title="تسجيل حضور أولياء الأمور"
+        src="https://script.google.com/macros/s/AKfycby_IYpodFHXkVA8pTV74_uKgz5sx51tlIsovumjKEJkAlozwAH2VIWAYDzo8ATEWdAIbw/exec"
+        loading="eager"
+        allowfullscreen>
+      </iframe>
     </div>
-  </div>
 
-  <!-- الشريط السفلي الثابت للإجمالي -->
-  <div class="bottom-bar">
-    <div class="bottom-item">
-      <span class="bottom-label">إجمالي أولياء الأمور المسجلين:</span>
-      <span class="bottom-value" id="bottomParents">0</span>
+    <div class="actions">
+      <a
+        class="btn"
+        href="https://script.google.com/macros/s/AKfycby_IYpodFHXkVA8pTV74_uKgz5sx51tlIsovumjKEJkAlozwAH2VIWAYDzo8ATEWdAIbw/exec"
+        target="_blank"
+        rel="noopener noreferrer">
+        فتح منظومة التسجيل مباشرة
+      </a>
     </div>
-    <div class="bottom-item">
-      <span class="bottom-label">إجمالي الطلبة الذين نوقشوا:</span>
-      <span class="bottom-value" id="bottomStudents">0</span>
-    </div>
-  </div>
 
-  <script>
-    // إزالة دالة العودة لمنصة التواصل
+  </main>
 
-    // تحديث الوقت والتاريخ (إن كان مطلوباً)
-    function updateDateTime() {
-      // يمكن إضافة الوقت والتاريخ إذا كان مطلوباً في المستقبل
-    }
+  <footer class="footer">
+    مدرسة أبو الدرداء للبنين (5-12)
+    — محافظة الظاهرة
+  </footer>
 
-    let parentsList = [];
-    const parentInput = document.getElementById('parentInput');
-    const parentSuggestions = document.getElementById('parentSuggestions');
-    const phoneInput = document.getElementById('phoneInput');
-    const childrenContainer = document.getElementById('childrenContainer');
-    const statusDiv = document.getElementById('status');
-    const saveBtn = document.getElementById('saveBtn');
-
-    const statsParentsEl = document.getElementById('statsParents');
-    const statsStudentsEl = document.getElementById('statsStudents');
-    const statsPercentEl = document.getElementById('statsPercent');
-
-    const bottomParentsEl = document.getElementById('bottomParents');
-    const bottomStudentsEl = document.getElementById('bottomStudents');
-
-    function setStatus(message, type) {
-      statusDiv.textContent = message || '';
-      statusDiv.className = 'status' + (type ? ' ' + type : '');
-      if (message && type === 'success') {
-        setTimeout(function() {
-          statusDiv.textContent = '';
-          statusDiv.className = 'status';
-        }, 4000);
-      }
-    }
-
-    function setLoading(isLoading) {
-      saveBtn.disabled = isLoading;
-      saveBtn.innerHTML = isLoading
-        ? '<span>جارٍ الحفظ...</span><span class="btn-icon">⏳</span>'
-        : '<span>حفظ الحضور</span><span class="btn-icon">✔️</span>';
-    }
-
-    function updateBottomBar(parentsCount, studentsCount) {
-      bottomParentsEl.textContent = parentsCount || '0';
-      bottomStudentsEl.textContent = studentsCount || '0';
-    }
-
-    // تحميل الإحصاءات من واجهة البرنامج (G6, G7, G8)
-    function loadStats() {
-      google.script.run
-        .withSuccessHandler(function(stats) {
-          if (!stats) return;
-          const parents = stats.parentsCount || 0;
-          const students = stats.studentsCount || 0;
-
-          statsParentsEl.textContent  = parents;
-          statsStudentsEl.textContent = students;
-
-          let p = stats.percentAttendance || '0%';
-          if (/^\d+(\.\d+)?$/.test(p)) {
-            p = p + '%';
-          }
-          statsPercentEl.textContent = p;
-
-          // تحديث الشريط السفلي
-          updateBottomBar(parents, students);
-        })
-        .withFailureHandler(function(err) {
-          console.log('خطأ في تحميل الإحصاءات:', err.message);
-        })
-        .getDashboardStats();
-    }
-
-    // تحميل قائمة أولياء الأمور من السكربت
-    function loadParents() {
-      setStatus('جاري تحميل بيانات أولياء الأمور...', 'info');
-      google.script.run
-        .withSuccessHandler(function(parents) {
-          parentsList = parents || [];
-          if (!parentsList.length) {
-            setStatus('لا توجد بيانات لأولياء الأمور في ورقة "قاعدة البيانات".', 'error');
-          } else {
-            setStatus('', '');
-          }
-        })
-        .withFailureHandler(function(err) {
-          setStatus('حدث خطأ أثناء تحميل أولياء الأمور: ' + err.message, 'error');
-        })
-        .getParentsList();
-    }
-
-    function filterParents(term) {
-      term = term.trim();
-      if (!term) return parentsList.slice(0, 15);
-      const lower = term.toLowerCase();
-      return parentsList
-        .filter(function(p) { return p.toLowerCase().indexOf(lower) !== -1; })
-        .slice(0, 15);
-    }
-
-    function renderSuggestions() {
-      const term = parentInput.value;
-      const matches = filterParents(term);
-
-      if (!matches.length) {
-        parentSuggestions.style.display = 'none';
-        parentSuggestions.innerHTML = '';
-        return;
-      }
-
-      parentSuggestions.innerHTML = '';
-      matches.forEach(function(name) {
-        const item = document.createElement('div');
-        item.className = 'suggestion-item';
-
-        const mainSpan = document.createElement('span');
-        const t = term.trim();
-        if (t) {
-          const regex = new RegExp('(' + t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'i');
-          const parts = name.split(regex);
-          parts.forEach(function(part) {
-            if (regex.test(part)) {
-              const spanHighlight = document.createElement('span');
-              spanHighlight.className = 'suggestion-highlight';
-              spanHighlight.textContent = part;
-              mainSpan.appendChild(spanHighlight);
-            } else {
-              mainSpan.appendChild(document.createTextNode(part));
-            }
-          });
-        } else {
-          mainSpan.textContent = name;
-        }
-
-        const tag = document.createElement('span');
-        tag.className = 'suggestion-tag';
-        tag.textContent = 'ولي أمر';
-
-        item.appendChild(mainSpan);
-        item.appendChild(tag);
-
-        item.addEventListener('click', function() {
-          selectParent(name);
-        });
-
-        parentSuggestions.appendChild(item);
-      });
-
-      parentSuggestions.style.display = 'block';
-    }
-
-    function selectParent(name) {
-      parentInput.value = name;
-      parentSuggestions.style.display = 'none';
-      loadChildrenForParent(name);
-    }
-
-    function loadChildrenForParent(parentName) {
-      childrenContainer.innerHTML =
-        '<span class="hint">جاري جلب الأبناء المرتبطين بهذا الولي...</span>';
-
-      google.script.run
-        .withSuccessHandler(function(children) {
-          childrenContainer.innerHTML = '';
-          if (!children || !children.length) {
-            childrenContainer.innerHTML =
-              '<span class="hint">لا يوجد أبناء مسجلون لهذا الولي في "قاعدة البيانات".</span>';
-            return;
-          }
-
-          children.forEach(function(ch, index) {
-            const wrapper = document.createElement('div');
-            wrapper.className = 'child-item';
-
-            const checkbox = document.createElement('input');
-            checkbox.type = 'checkbox';
-            checkbox.id = 'child_' + index;
-            checkbox.dataset.student = ch.student || '';
-            checkbox.dataset.klass = ch.klass || '';
-
-            checkbox.addEventListener('change', function() {
-              if (checkbox.checked) {
-                wrapper.classList.add('active');
-              } else {
-                wrapper.classList.remove('active');
-              }
-            });
-
-            const label = document.createElement('label');
-            label.setAttribute('for', checkbox.id);
-
-            const spanMain = document.createElement('span');
-            spanMain.className = 'child-label-main';
-            spanMain.textContent = ch.student || 'طالب بدون اسم';
-
-            const spanClass = document.createElement('span');
-            spanClass.className = 'child-label-class';
-            if (ch.klass) {
-              spanClass.textContent = '(' + ch.klass + ')';
-            }
-
-            label.appendChild(spanMain);
-            label.appendChild(spanClass);
-
-            wrapper.appendChild(checkbox);
-            wrapper.appendChild(label);
-            childrenContainer.appendChild(wrapper);
-          });
-        })
-        .withFailureHandler(function(err) {
-          childrenContainer.innerHTML =
-            '<span class="hint">حدث خطأ أثناء جلب الأبناء: ' + err.message + '</span>';
-        })
-        .getChildrenForParent(parentName);
-    }
-
-    parentInput.addEventListener('input', function() {
-      const val = parentInput.value || '';
-      if (!val.trim()) {
-        if (parentsList.length) {
-          renderSuggestions();
-        } else {
-          parentSuggestions.style.display = 'none';
-        }
-        childrenContainer.innerHTML =
-          '<span class="hint">اختر ولي أمر لعرض أبنائه.</span>';
-        return;
-      }
-      renderSuggestions();
-    });
-
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.parent-wrapper')) {
-        parentSuggestions.style.display = 'none';
-      }
-    });
-
-    function saveData() {
-      setStatus('', '');
-      const parentName = (parentInput.value || '').trim();
-      const phone = (phoneInput.value || '').trim();
-
-      if (!parentName) {
-        setStatus('الرجاء كتابة/اختيار اسم ولي الأمر من القائمة المقترحة.', 'error');
-        parentInput.focus();
-        return;
-      }
-
-      if (parentsList.length && !parentsList.includes(parentName)) {
-        setStatus('الاسم المدخل لا يطابق أي ولي أمر في قاعدة البيانات. الرجاء اختيار الاسم من القائمة.', 'error');
-        parentInput.focus();
-        renderSuggestions();
-        return;
-      }
-
-      if (!phone) {
-        setStatus('الرجاء إدخال رقم الهاتف (يمكن إدخال - عند الحاجة).', 'error');
-        phoneInput.focus();
-        return;
-      }
-
-      const checkboxes = childrenContainer.querySelectorAll('input[type="checkbox"]');
-      const chosen = [];
-      checkboxes.forEach(function(cb) {
-        if (cb.checked) {
-          chosen.push({
-            student: cb.dataset.student,
-            klass: cb.dataset.klass
-          });
-        }
-      });
-
-      if (!chosen.length) {
-        setStatus('الرجاء اختيار طالب واحد على الأقل تمّت مناقشة تحصيله.', 'error');
-        return;
-      }
-
-      setLoading(true);
-      google.script.run
-        .withSuccessHandler(function(result) {
-          setLoading(false);
-          if (!result) {
-            setStatus('لم يصل رد من الخادم.', 'error');
-            return;
-          }
-
-          let msg = result.message || '';
-          if (result.duplicates && result.duplicates.length) {
-            msg += ' | تم تخطي المكررين: ' + result.duplicates.join(', ');
-          }
-          setStatus(msg, 'success');
-
-          // تحديث الإحصاءات بعد الحفظ (وسينعكس على الشريط السفلي)
-          loadStats();
-
-          // تهيئة كاملة لولي أمر جديد
-          parentInput.value = '';
-          phoneInput.value = '';
-          parentSuggestions.style.display = 'none';
-          childrenContainer.innerHTML =
-            '<span class="hint">اختر ولي أمر لعرض أبنائه.</span>';
-
-          parentInput.focus();
-        })
-        .withFailureHandler(function(err) {
-          setLoading(false);
-          setStatus('حدث خطأ أثناء الحفظ: ' + err.message, 'error');
-        })
-        .saveAttendance(parentName, phone, chosen);
-    }
-
-    function initApp() {
-      loadParents();
-      loadStats();
-      parentInput.focus();
-    }
-
-    window.addEventListener('load', initApp);
-  </script>
 </body>
 </html>
